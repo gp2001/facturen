@@ -18,7 +18,7 @@ function generateInvoice() {
         var logoWidth = 50; // Breedte van het logo in mm (pas aan naar wens)
         var logoHeight = logoWidth * (logoImg.height / logoImg.width);
         doc.addImage(logoImgData, 'PNG', 10, 10, logoWidth, logoHeight); // Pas de afmetingen en positie van het logo aan
-        
+
         doc.setFontSize(10);
         doc.text("Qais", 70, 15); // Vervang 'Jouw bedrijfsnaam' door de naam van jouw bedrijf
         doc.text("Oldenzaalse straat 30 Hengelo", 70, 20); // Vervang 'Jouw adres' door het adres van jouw bedrijf
@@ -42,28 +42,71 @@ function generateInvoice() {
         doc.text("Factuurgegevens", 10, 90);
         doc.setFontStyle("normal");
         doc.setFontSize(10);
-        doc.text("Aantal uur: " + hours, 10, 100);
-        doc.text("Uurloon: \u20AC" + hourlyRate.toFixed(2), 10, 110);
-        doc.text("Subtotaal: \u20AC" + subtotal.toFixed(2), 10, 120);
-        doc.text("BTW (21%): \u20AC" + tax.toFixed(2), 10, 130);
+
+        // Omschrijving
+        doc.setFontSize(12);
         doc.setFontStyle("bold");
-        doc.text("Totaal: \u20AC" + total.toFixed(2), 10, 140);
+        doc.text("Omschrijving", 10, 100);
+
+        // Eenheden
+        doc.setFontSize(12);
+        doc.setFontStyle("bold");
+        doc.text("Eenheden", 110, 100);
+
+       // Aantal uur
+        var hoursText = "Aantal uur: ";
+        doc.setFontStyle("normal");
+        doc.text(hoursText, 10, 110);
+        doc.text(hours.toString(), 110, 110); // Convert naar tekenreeks
+
+        // Uurloon
+        var hourlyRateText = "Uurloon:";
+        doc.setFontStyle("normal");
+        doc.text(hourlyRateText, 10, 120);
+        doc.text("\u20AC"+hourlyRate.toFixed(2).toString(), 110, 120); // Convert naar tekenreeks
+
+        // Subtotaal
+        var subtotalText = "Subtotaal:";
+        doc.setFontStyle("normal");
+        doc.text(subtotalText, 10, 130);
+        doc.text("\u20AC"+subtotal.toFixed(2).toString(), 110, 130) ; // Convert naar tekenreeks
+
+        // BTW
+        var taxText = "BTW (21%):";
+        doc.setFontStyle("normal");
+        doc.text(taxText, 10, 140);
+        doc.text("\u20AC"+tax.toFixed(2).toString(), 110, 140); // Convert naar tekenreeks
+
+        // Totaal
+        var totalText = "Totaal:";
+        doc.setFontStyle("bold");
+        doc.text(totalText, 10, 150);
+        doc.text("\u20AC"+total.toFixed(2).toString(), 110, 150); // Convert naar tekenreeks
+
+        // Lijnen
+        doc.line(10, 105, doc.internal.pageSize.width - 10, 105);
+        doc.line(10, 115, doc.internal.pageSize.width - 10, 115);
+        doc.line(10, 125, doc.internal.pageSize.width - 10, 125);
+        doc.line(10, 135, doc.internal.pageSize.width - 10, 135);
+        doc.line(10, 145, doc.internal.pageSize.width - 10, 145);
+
+        
 
         // Betaalinformatie
         doc.setFontSize(10);
         doc.setFontStyle("bold");
-        doc.text("Betaalmethode", 10, 165);
+        doc.text("Betaalmethode", 10, 175);
         doc.setFontStyle("normal");
         doc.setFontSize(10);
-        doc.text("Overschrijven naar bankrekening:", 10, 175);
-        doc.text("NL12 BANK 3456 7890 12", 10, 185);
+        doc.text("Overschrijven naar bankrekening:", 10, 185);
+        doc.text("NL12 BANK 3456 7890 12", 10, 195);
 
         // Professionele tekst
         doc.setFontSize(10);
         doc.setFontStyle("italic");
-        doc.text("Gelieve het bedrag binnen 14 dagen over te maken.", doc.internal.pageSize.getWidth() / 2, 230, { align: "center" });
+        doc.text("Gelieve het bedrag binnen 14 dagen over te maken.", doc.internal.pageSize.getWidth() / 2, 240, { align: "center" });
         doc.setFontStyle("bolditalic");
-        doc.text("Bedankt voor uw zaken!", 10, 215);
+        doc.text("Bedankt voor uw zaken!", 10, 225);
 
         doc.save("factuur.pdf");
     }
