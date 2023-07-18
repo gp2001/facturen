@@ -53,6 +53,8 @@ function addProject() {
 function generateInvoice(customerName, customerAddress, customerCity, customerCountry, projectNames, projectCosts, logoImgData) {
     var doc = new jsPDF();
     doc.setFontSize(12);
+
+    // Factuurnummer genereren
     var factuurID = generateInvoiceID();
 
     // Logo en gegevens
@@ -89,7 +91,7 @@ function generateInvoice(customerName, customerAddress, customerCity, customerCo
     doc.setFontSize(10);
     doc.text("Omschrijving", omschrijvingX, omschrijvingY);
     // BTW
-    btwX = omschrijvingX + 120;
+    btwX = omschrijvingX + 115;
     btwY = 70;
     doc.text("BTW (21%)", btwX, btwY);
     // Bedragen
