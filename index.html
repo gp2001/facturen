@@ -1,22 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Facturatie</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+  <title>Factuur</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h2>Facturatie</h2>
-        <label for="name">Naam:</label>
-        <input type="text" id="name">
-        <label for="hours">Aantal uur:</label>
-        <input type="number" id="hours">
-        <label for="hourlyRate">Uurloon:</label>
-        <input type="number" id="hourlyRate">
-        <button onclick="generateInvoice()">Genereer Factuur</button>
-    </div>
-    <script src="script.js"></script>
+  <h1>Factuur</h1>
+
+  <form id="invoiceForm">
+    <label for="customerName">Klantnaam:</label>
+    <input type="text" id="customerName" name="customerName" required>
+
+    <label for="customerAddress">Klantadres:</label>
+    <input type="text" id="customerAddress" name="customerAddress" required>
+
+    <label for="customerCity">Klantwoonplaats:</label>
+    <input type="text" id="customerCity" name="customerCity" required>
+
+    <label for="customerCountry">Klantland:</label>
+    <input type="text" id="customerCountry" name="customerCountry" required>
+
+    <label for="projectName">Opdracht:</label>
+    <input type="text" id="projectName" name="projectName[]" required>
+
+    <label for="projectCost">Kosten:</label>
+    <input type="number" id="projectCost" name="projectCost[]" required>
+
+    <div id="additionalProjects"></div>
+
+    <button type="button" onclick="addProject()">Nog een opdracht toevoegen</button>
+
+    <input type="submit" value="Genereer factuur">
+  </form>
+
+  <script src="script.js"></script>
 </body>
 </html>
