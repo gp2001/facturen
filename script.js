@@ -53,6 +53,8 @@ function addProject() {
 function generateInvoice(customerName, customerAddress, customerCity, customerCountry, projectNames, projectCosts, logoImgData) {
     var doc = new jsPDF();
     doc.setFontSize(12);
+
+    // Factuurnummer genereren
     var factuurID = generateInvoiceID();
 
     // Logo en gegevens
