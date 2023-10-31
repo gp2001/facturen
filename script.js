@@ -156,7 +156,7 @@ function generateInvoice(customerName, customerAddress, customerCity, customerCo
     doc.setFontSize(10); // Tekstgrootte
     doc.text("Deze facturering is mede mogelijk gemaakt door", 20, 295); // Tekst
     doc.setTextColor(0, 0, 255); // Tekstkleur (blauw)
-    doc.textWithLink("Gabri\u00EBl", 165, 295, { url: "gp2001.github.io" }); // Klikbare link naar GitHub
+    doc.textWithLink("Gabri\u00EBl", 165, 295, { url: "polezait.nl" }); // Klikbare link naar GitHub
 
     var pdfData = doc.output('bloburl');
     window.open(pdfData, '_blank');
